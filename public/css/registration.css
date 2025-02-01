@@ -164,10 +164,25 @@ input {
     font-size: 0.75rem;
     min-height: 2.4rem;
     text-align: center;
-    margin-top: 3.5rem;
+    margin-top: 2.8rem;
     padding-top: 0.7rem;
     background-color: var(--blue);
     border: 1px solid #ccc;
     border-radius: 0.5rem;
     text-decoration: none;
+}
+
+.signup:hover {
+    background-color: var(--light-blue);
+    transition: background-color 0.3s ease-in-out;
+}
+
+.form__checkbox {
+    display: flex;
+    align-items: center;
+}
+
+.consent {
+    margin-left: 0.75rem;
+    font-size: var(--font-size-200);
 }
