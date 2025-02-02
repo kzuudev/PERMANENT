@@ -22,7 +22,8 @@
 
         <main class="viewport">
             <section class="form__container">
-                <form action="" id="form__login">
+                <form action="" id="form__login" method="POST">
+                @csrf
                     <h1 class="form__greetings">Hello, Rizalian!</h1>
                     <div class="form__email">
                         <label class="email" for="email">Email: </label>
@@ -57,11 +58,11 @@
 
                     <div class="form__buttons">
                         <div class="form__login">
-                            <button class="login">Login</button>
+                            <button name="submit" class="login">Login</button>
                         </div>
 
                         <div class="form__signup">
-                            <a class="signup" href="/registration">Sign Up</a>
+                            <a class="signup"  href="/registration">Sign Up</a>
                         </div>
                     </div>
                 </form>
