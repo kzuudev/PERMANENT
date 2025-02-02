@@ -7,20 +7,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Route::get('/login', function () {
     return view('login');
 });
 
-Route::post('/login', [LoginController::class, 'store']);
-
-
+// Route for processing the login form (POST request)
+Route::post('/login', [LoginController::class, 'login'])->name('login.store');
 
 Route::get('/registration', function () {
     return view('registration');
 });
 
 Route::get('/LFMS', function () {
-    return view('LFMS');
-});
+    return view('LFMS'); // LFMS dashboard
+})->name('lfms');
 

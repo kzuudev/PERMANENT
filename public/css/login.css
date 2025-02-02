@@ -117,7 +117,7 @@ button {
     width: 25rem;
     margin: 18rem 20rem 10rem 20rem;
     position: absolute;
-    top: 2%;
+    top: -2%;
     left: 16%;
 }
 
@@ -211,4 +211,10 @@ button {
     padding-top: 0.7rem;
     border: 1px solid #ccc;
     border-radius: 0.5rem;
+}
+
+.error {
+    margin-top: 0.75rem;
+    font-size: var(--font-size-300);
+    color: red;
 }

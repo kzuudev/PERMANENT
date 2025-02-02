@@ -22,12 +22,12 @@
 
         <main class="viewport">
             <section class="form__container">
-                <form action="" id="form__login" method="POST">
+                <form action="{{ route('login.store') }}" id="form__login" method="POST">
                 @csrf
                     <h1 class="form__greetings">Hello, Rizalian!</h1>
                     <div class="form__email">
                         <label class="email" for="email">Email: </label>
-                        <input type="text" name="email" id="email" />
+                        <input type="text" name="email" id="email" />          
                     </div>
 
                     <div class="form__password">
@@ -35,6 +35,9 @@
                             >Password:
                         </label>
                         <input type="text" name="password" id="password" />
+                        @if(session->has('errorMsg'))
+                        <span class="error">{{ session('errorMsg') }}</span>
+                        @endif    
                     </div>
 
                     <div class="form__auth-options">
@@ -58,7 +61,7 @@
 
                     <div class="form__buttons">
                         <div class="form__login">
-                            <button name="submit" class="login">Login</button>
+                            <button type="submit" name="submit" class="login" >Login</button>
                         </div>
 
                         <div class="form__signup">
