@@ -25,24 +25,18 @@ class LoginUserRequest extends FormRequest {
   public function rules(): array
   {
       return [
-          'fullname' => 'required|string|max:255',
-          'phone_number' => 'required|string|min:8|max:11',
+        
           'email' => 'required|email',
-          'donation_amount' => 'required|numeric|min:1',
-          'date' => 'required|date',
-          'message' => 'nullable|string',
+          'password' => 'required|min:8'
+      
       ];
   }
 
   public function messages()
   {
       return [
-          'fullname.required' => 'Please enter your full name.',
-          'phone_number.required' => 'Please provide a phone number.',
           'email.required' => 'We need your email address.',
-          'donation_amount.required' => 'Please provide a donation amount.',
-          'date.required' => 'Please specify the donation date.',
-          'message.max' => 'The message can only be up to 255 characters.',
+          'password.required' => "Enter your password"
       ];
   }
 

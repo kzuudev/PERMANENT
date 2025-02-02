@@ -22,22 +22,29 @@
 
         <main class="viewport">
             <section class="form__container">
-                <form action="{{ route('login.store') }}" id="form__login" method="POST">
+                <form action="{{ route('login.store') }}"  method="POST" id="form__login">
                 @csrf
                     <h1 class="form__greetings">Hello, Rizalian!</h1>
+                    <!-- @if(session('errorMsg'))
+                    <div class="error">{{ session('errorMsg') }}</div>
+                    @endif -->
+
                     <div class="form__email">
                         <label class="email" for="email">Email: </label>
-                        <input type="text" name="email" id="email" />          
+                        <input type="text" name="email" id="email" />  
+                        @if ($errors->has('email'))
+                        <span class="error">{{ $errors->first('email') }}</span>
+                        @endif
                     </div>
 
                     <div class="form__password">
                         <label class="password" for="password"
                             >Password:
                         </label>
-                        <input type="text" name="password" id="password" />
-                        @if(session->has('errorMsg'))
-                        <span class="error">{{ session('errorMsg') }}</span>
-                        @endif    
+                        <input type="password " name="password" id="password" />
+                        @if ($errors->has('password'))
+                        <span class="error">{{ $errors->first('password') }}</span>
+                        @endif
                     </div>
 
                     <div class="form__auth-options">
@@ -61,7 +68,7 @@
 
                     <div class="form__buttons">
                         <div class="form__login">
-                            <button type="submit" name="submit" class="login" >Login</button>
+                            <button type="submit" class="login" >Login</button>
                         </div>
 
                         <div class="form__signup">

@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use App\Models\LoginUser;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
-class LoginController extends Controller {
+class AuthController extends Controller {
 
    public function store(Request $request) {
       
@@ -33,28 +34,38 @@ class LoginController extends Controller {
    }
    
    public function login(Request $request) {
-      
-
+   
       $request->validate([
-         'email' => 'required|email|exists:jru_users,email',  // Validate email
+         'email' => 'required|email',  // Validate email
          'password' => 'required|min:8',  // Validate password length
          ]);
  
          $errorMsg = "";
+
          $email = $request->input('email'); 
          $password = $request->input('password'); 
-
+     
           // Check if email exists in the database
          $user = DB::table('jru_users')->where('email', $email)->first();
+    
+         
 
-        if($user) { //if the user exists in database (sqlite) execute code below
-         if(password_verify($password, $user->password)) {
-            return  redirect()->route('lfms');
-         }else {
-            $errorMsg = "Invalid password";
-            return back()->with('errorMsg', $errorMsg); // Return with password error
-         }
+      if ($user) {
+         if (password_verify($password, $user->password)) {
+            Auth::loginUsingId($user->id);
+            session()->regenerate();
+            return redirect(route('lfms'));  // Redirect to home page after successful login
+        } else {
+            // If password doesn't match
+            return back()->withErrors(['password' => 'Invalid Password.']);
         }
+     } else {
+         // You can handle invalid email/password here if needed
+         return back()->withErrors([
+             'email' => 'Invalid Email.',
+         ]);
+     }
+
     
    }
 
